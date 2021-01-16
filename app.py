@@ -1,16 +1,19 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from datetime import timedelta
+from dotenv import load_dotenv
 import time
 import json
+import os
 
 #Firebase
 from configfirebase import DB
 
 # Api config
 app = Flask(__name__)
+load_dotenv()
 
 # Session config
-app.secret_key = 'v3ryS3cr3tK3y'
+app.secret_key = os.getenv('APP_SECRET_KEY')
 app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
@@ -23,7 +26,7 @@ def start():
 @app.route('/signup' , methods=['POST'])
 def signup():
     #step1
-    # userRegisted = json.loads(json.dumps(db.sign_in_with_email_and_password(request.json['email'], request.json['password'], True)))
+    # userRegisted = json.loads(json.dumps(db.sign_in_with_email_and_password(request.json['email'], request.json['password'])))
     userRegisted = json.loads(json.dumps(db.sign_up_with_email_and_password(request.json['email'], request.json['password'])))
     print('#step1 userRegisted : {0}'.format(userRegisted))
     refreshToken = userRegisted['refreshToken']
@@ -60,16 +63,15 @@ def signup():
 
     return db.updateUser(userRegisted['localId'], firebaseUser)
 
-@app.route('/user/<localId>')
+@app.route('/users/<localId>')
 def get(localId):
     return db.getUser(localId)
 
 @app.route('/users')
 def getUsers():
     return db.getUsers()
-    
 
-@app.route('/user', methods=['PUT'])
+@app.route('/users', methods=['PUT'])
 def updateUser():
     firebaseUser = {
         "katchID": "",

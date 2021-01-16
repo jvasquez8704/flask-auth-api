@@ -10,6 +10,7 @@
     * run `$ pip3 install Flask` 
     * run `$ pip3 install request` 
     * run `$ pip3 install firebase_admin` 
+    * run `$ pip3 install -U python-dotenv` 
 
 # Doc resources
     `<link>` : <https://docs.authlib.org/en/latest/basic/install.html#pip-install-authlib>
