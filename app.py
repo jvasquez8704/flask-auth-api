@@ -18,10 +18,11 @@ app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
 db = DB()
+print("message: api running... test")
 
 @app.route('/')
 def start():
-  return jsonify({"message":"api running..."})
+  return jsonify({"message":"api running... test"})
 
 @app.route('/signup' , methods=['POST'])
 def signup():

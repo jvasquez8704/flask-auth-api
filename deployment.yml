@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: katch-user-api
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: katch-user-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: katch-user-api
+    spec:
+      containers:
+      - name: katch-user-api
+        image: us.gcr.io/katchplus/katch-user-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4001
