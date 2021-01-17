@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "19b65555-e519-4c76-8f98-4b64474f0657",
+		"name": "katch-media-auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sign-up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"carloss90@gmail.com\",\n    \"password\":\"Pass!23457!\",\n    \"forename\":\"Carlos Ronerto\",\n    \"surename\":\"Sosa Almendares\",\n    \"phoneNumber\":\"32980087\",\n    \"country\":\"HN\",\n    \"language\":\"spa\",\n    \"age\":35,\n    \"instagram\":\"@carloss90\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-user-by-localId",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"localId\":\"qRACbciABtPFE5G0rIoJEtk7sTu2\",\n    \"utellyId\":\"6001557d1234b753de35a07c\",\n    \"email\":\"jdhniga80@gmail.com\",\n    \"password\":\"Pass!23457!\",\n    \"forename\":\"Jorge Roberto\",\n    \"surename\":\"Hernandez Soto\",\n    \"phoneNumber\":\"94557788\",\n    \"country\":\"HN\",\n    \"language\":\"spa\",\n    \"age\":35,\n    \"instagram\":\"@jdhniga\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/users/goUkcFhAeZXTpgsGGpvY9cCmcq52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"users",
+						"goUkcFhAeZXTpgsGGpvY9cCmcq52"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

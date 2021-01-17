@@ -3,6 +3,15 @@
 # Enviroment
     * Python: 3.8.4 || 2.7.16
 
+
+## Its you are using Windows
+# Dependencies
+    * run `pip install -U python-dotenv`
+    * run `pip install -U firebase-admin`
+    * run `pip install -U Flask`
+    * run `pip install -U request`
+
+## Its you are using MacOS or Linux
 # Dependencies
     * run `$ pip3 install Authlib`
     * run `$ pip3 install Authlib requests` 

@@ -58,7 +58,10 @@ def signup():
         "instagram": request.json['instagram'],
         "active":1,
         "userCreation":int(round(time.time() * 1000)),
-        "lastAction":int(round(time.time() * 1000))
+        "lastAction":int(round(time.time() * 1000)),
+        "welcomeSeen":0,
+        "featuresSeen":0
+
     }
 
     return db.updateUser(userRegisted['localId'], firebaseUser)
