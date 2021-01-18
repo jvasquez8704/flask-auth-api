@@ -4,7 +4,7 @@ metadata:
   name: katch-user-api
   namespace: dev
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: katch-user-api
   ports:
