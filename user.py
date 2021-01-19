@@ -52,6 +52,8 @@ class Users(Resource):
             "active": 1,
             "userCreation": int(round(time.time() * 1000)),
             "lastAction": int(round(time.time() * 1000)),
+            "welcomeSeen":0,
+            "featuresSeen":0,
             "TCVersion":data['TCVersion'],
             "PPVersion":data['PPVersion']
         }
