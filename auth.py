@@ -52,6 +52,7 @@ class SignUp(Resource):
             "lastAction": int(round(time.time() * 1000)),
             "welcomeSeen": 0,
             "featuresSeen": 0,
+            "role": os.getenv('DEFAULT_USER_ROLE'),
             "TCVersion": data['TCVersion'],
             "PPVersion": data['PPVersion']
         }
