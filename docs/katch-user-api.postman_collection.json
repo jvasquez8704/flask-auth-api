@@ -1,0 +1,22 @@
+{
+	"info": {
+		"_postman_id": "3e2d8c05-56f3-41ac-bb75-7554a289e0eb",
+		"name": "katch-user-api",
+		"description": "katch USER API DEV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register/sign-up",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Katch User Registration"
+			},
+			"response": []
+		}
+	]
+}
