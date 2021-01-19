@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user
 import json
 import time
+import os
 
 
 class SignUp(Resource):
@@ -40,6 +41,7 @@ class SignUp(Resource):
             "IDFA": "",
             "AAID": "",
             "GAID": "",
+            "email": data['email'],
             "forename": data['forename'],
             "surename": data['surename'],
             "phoneNumber": data['phoneNumber'],

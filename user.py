@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from firebase import get_user, get_users, update_user, get_utelly_id
 import time
+import os
 
 class User(Resource):
     def get(self, userId):
@@ -42,6 +43,7 @@ class Users(Resource):
             "IDFA": "",
             "AAID": "",
             "GAID": "",
+            "email": data['email'],
             "forename": data['forename'],
             "surename": data['surename'],
             "phoneNumber": data['phoneNumber'],
@@ -54,6 +56,7 @@ class Users(Resource):
             "lastAction": int(round(time.time() * 1000)),
             "welcomeSeen":0,
             "featuresSeen":0,
+            "role": os.getenv('DEFAULT_USER_ROLE'),
             "TCVersion":data['TCVersion'],
             "PPVersion":data['PPVersion']
         }
