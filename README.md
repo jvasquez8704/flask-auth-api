@@ -10,6 +10,7 @@
     * run `pip install -U firebase-admin`
     * run `pip install -U Flask`
     * run `pip install -U request`
+    * run `pip install -U flask_restful`
 
 ## Its you are using MacOS or Linux
 # Dependencies
@@ -20,6 +21,7 @@
     * run `$ pip3 install request` 
     * run `$ pip3 install firebase_admin` 
     * run `$ pip3 install -U python-dotenv` 
+    * run `$ pip3 install -U flask_restful`
 
 # Doc resources
     `<link>` : <https://docs.authlib.org/en/latest/basic/install.html#pip-install-authlib>
@@ -56,3 +58,6 @@ docker rm <nombre>
 
 //Borrar imagenes
 docker rmi <nombre>
+
+//Comando PATCH para recontruir los pods
+kubectl patch deployment katch-user-api [-n dev] -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"19012021"}}}}}"

@@ -29,7 +29,7 @@ def loading_config():
 api.add_resource(User, '/users/<string:userId>')
 api.add_resource(Users, '/users')
 api.add_resource(SignUp, '/signup')
-api.add_resource(SignIn, '/singin')
+api.add_resource(SignIn, '/signin')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4001, debug=True)
