@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_restful import Api
+from flask_cors import CORS
 
 from user import Users, User
 from auth import SignUp, SignIn
@@ -14,6 +15,7 @@ load_dotenv()
 
 # Api config
 app = Flask(__name__)
+CORS(app)
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = os.getenv('APP_SECRET_KEY')
 
