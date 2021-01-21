@@ -74,7 +74,7 @@ def get_utelly_id(firebaseRefreshToken):
                                  "X-AppKey": X_AppKey,
                                  "Content-Type": "application/json"
                              },
-                             #verify=False,
+                             verify=False,
                              data=payload
                              )
     return response.json()
