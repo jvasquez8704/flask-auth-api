@@ -60,4 +60,4 @@ docker rm <nombre>
 docker rmi <nombre>
 
 //Comando PATCH para recontruir los pods
-kubectl patch deployment katch-user-api [-n dev] -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"19012021"}}}}}"
+kubectl patch deployment katch-user-api [-n dev] -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"19012021\"}}}}}"
