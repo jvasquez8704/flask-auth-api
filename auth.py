@@ -1,4 +1,7 @@
 from flask_restful import Resource, reqparse
+from flask_jwt_extended import (
+    create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
+)
 from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user
 import json
 import time
@@ -67,7 +70,12 @@ class SignUp(Resource):
 
         user_merged = fb_user.copy()
         user_merged.update(firebaseUser)
-        return {'status_code': 201, "message": "User created successfully.", "user": user_merged}, 201
+
+        jw_tokens = {
+            'access_token': create_access_token(identity=data['email']),
+            'refresh_token': create_refresh_token(identity=data['email'])
+        }
+        return {'status_code': 201, "message": "User created successfully.", "user": user_merged, "auth": jw_tokens}, 201
 
         
 
@@ -81,6 +89,23 @@ class SignIn(Resource):
         fb_user = json.loads(json.dumps(sign_in_with_email_and_password(data['email'], data['password'])))
         if 'error' in fb_user:
             return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': ''}, fb_user['error']['code']
-        return {'status_code': 200, "message": "User signed successfully.", "user": fb_user}, 200
+        
+        jw_tokens = {
+            'access_token': create_access_token(identity=data['email']),
+            'refresh_token': create_refresh_token(identity=data['email'])
+        }
+        return {'status_code': 200, "message": "User signed successfully.", "user": fb_user, "auth": jw_tokens}, 200
+
+
+class Jwt(Resource):
+    parser = reqparse.RequestParser()
+
+    @jwt_refresh_token_required
+    def post(self):
+        logged_user = get_jwt_identity()
+        ret = {
+            'access_token': create_access_token(identity=logged_user)
+        }
+        return {'status_code': 201, "message": "success process", "auth": ret}, 201
 
 
