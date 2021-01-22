@@ -148,6 +148,8 @@ dmypy.json
 
 # local os
 .DS_Store
+Pipfile
+Pipfile.lock
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

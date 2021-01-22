@@ -6,7 +6,6 @@ import os
 import json
 import requests
 
-load_dotenv()
 FIREBASE_WEB_API_KEY = os.environ.get("FIREBASE_WEB_API_KEY")
 FIREBASE_SIGNIN_URL = os.getenv('KATCH_FIREBASE_SIGNIN_URL')
 FIREBASE_SIGNUP_URL = os.getenv('KATCH_FIREBASE_SIGNUP_URL')
