@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user
+from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user, fs
 import json
 import time
 import os
@@ -67,6 +67,21 @@ class SignUp(Resource):
 
         user_merged = fb_user.copy()
         user_merged.update(firebaseUser)
+    	
+        ref = fs.collection('users').document(fb_user['localId'])
+        user_record = {
+                u'Age': data['age'],
+                u'rated_count': 0,
+                u'Email': data['email'],
+                u'Name': data['forename']+" "+data['surename'],
+                u'lastname': data['surename'],
+                u'firstname': data['forename'],
+                u'uid': fb_user['localId'],
+                u'injected_movies': {},
+                u'rated_movies': u''  # add empty rated movies
+            }
+        ref.set(user_record)
+
         return {'status_code': 201, "message": "User created successfully.", "user": user_merged}, 201
 
         

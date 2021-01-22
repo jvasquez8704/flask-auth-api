@@ -1,5 +1,5 @@
 import firebase_admin
-from firebase_admin import credentials, db, auth
+from firebase_admin import credentials, db, auth, firestore
 from dotenv import load_dotenv
 
 import os
@@ -19,6 +19,7 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': os.getenv('KATCH_FIREBASE_DB_URL')
 })
 
+fs = firestore.Client()
 
 def get_user(userId):
     return db.reference(SCHEME).child(userId).get()
