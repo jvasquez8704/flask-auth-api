@@ -29,8 +29,8 @@ class Users(Resource):
     parser.add_argument('language', type=str)
     parser.add_argument('age', type=int)
     parser.add_argument('instagram', type=str)
-    parser.add_argument('TCVersion', type=str)
-    parser.add_argument('PPVersion', type=str)
+    parser.add_argument('tcVersion', type=str)
+    parser.add_argument('ppVersion', type=str)
 
     @jwt_required
     def get(self):
@@ -64,8 +64,8 @@ class Users(Resource):
             "welcomeSeen":0,
             "featuresSeen":0,
             "role": os.getenv('DEFAULT_USER_ROLE'),
-            "TCVersion":data['TCVersion'],
-            "PPVersion":data['PPVersion']
+            "TCVersion":data['tcVersion'],
+            "PPVersion":data['ppVersion']
         }
 
         try:

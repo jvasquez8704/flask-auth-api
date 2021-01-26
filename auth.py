@@ -2,7 +2,7 @@ from flask_restful import Resource, reqparse
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
 )
-from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user
+from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user, fs
 import json
 import time
 import os
@@ -19,8 +19,8 @@ class SignUp(Resource):
     parser.add_argument('language', type=str, required=True, help="language cannot be blank.")
     parser.add_argument('age', type=int, required=True, help="age cannot be blank.")
     parser.add_argument('instagram', type=str, required=True, help="instagram cannot be blank.")
-    parser.add_argument('TCVersion', type=str, required=False)
-    parser.add_argument('PPVersion', type=str, required=False)
+    parser.add_argument('tcVersion', type=str, required=False)
+    parser.add_argument('ppVersion', type=str, required=False)
 
     def post(self):
         data = SignUp.parser.parse_args()
@@ -58,8 +58,8 @@ class SignUp(Resource):
             "welcomeSeen": 0,
             "featuresSeen": 0,
             "role": os.getenv('DEFAULT_USER_ROLE'),
-            "TCVersion": data['TCVersion'],
-            "PPVersion": data['PPVersion']
+            "TCVersion": data['tcVersion'],
+            "PPVersion": data['ppVersion']
         }
 
         try:

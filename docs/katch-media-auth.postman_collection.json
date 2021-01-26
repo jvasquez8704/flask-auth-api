@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "19b65555-e519-4c76-8f98-4b64474f0657",
+		"_postman_id": "bc99177c-ac28-48d4-9dcf-ce816b2a346a",
 		"name": "katch-media-auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"carlosrv39@gmail.com\",\n    \"password\":\"Pass!23457!\",\n    \"forename\":\"Carlos Hostilio\",\n    \"surename\":\"Ramirez Villalta\",\n    \"phoneNumber\":\"32980087\",\n    \"country\":\"HN\",\n    \"language\":\"spa\",\n    \"age\":39,\n    \"instagram\":\"@carlosrv39\",\n    \"TCVersion\":\"1.0\",\n    \"PPVersion\":\"1.0\"\n}",
+					"raw": "{\n    \"email\":\"carlosrv51@gmail.com\",\n    \"password\":\"Pass!23457!\",\n    \"forename\":\"Carlos Hostilio\",\n    \"surename\":\"Ramirez Villalta\",\n    \"phoneNumber\":\"32980087\",\n    \"country\":\"HN\",\n    \"language\":\"spa\",\n    \"age\":51,\n    \"instagram\":\"@carlosrv51\",\n    \"TCVersion\":\"1.0\",\n    \"PPVersion\":\"1.0\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"carlosrv34@gmail.com\",\n    \"password\":\"Pass!23457!\"\n}",
+					"raw": "{\n    \"email\":\"carlosrv51@gmail.com\",\n    \"password\":\"Pass!23457!\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -48,14 +48,48 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4001/singin",
+					"raw": "http://localhost:4001/signin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4001",
 					"path": [
-						"singin"
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"carlosrv51@gmail.com\",\n    \"password\":\"Pass!23457!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4001/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"refresh"
 					]
 				}
 			},
@@ -65,7 +99,13 @@
 			"name": "update-user-by-localId",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"localId\":\"l8jLwEFc8ThKsgNYjGsn2xKnsLZ2\",\n    \"utellyId\":\"60066f24d4f6f7d705d4caa4\",\n    \"email\":\"carlosrv34@gmail.com\",\n    \"password\":\"Pass!23457!\",\n    \"forename\":\"Carlos Hostilio\",\n    \"surename\":\"Ramirez Villalta\",\n    \"phoneNumber\":\"32980087\",\n    \"country\":\"HN\",\n    \"language\":\"spa\",\n    \"age\":34,\n    \"instagram\":\"@carlosrv34\",\n    \"TCVersion\":\"1.0\",\n    \"PPVersion\":\"1.0\"\n}",
@@ -96,7 +136,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "",
@@ -127,7 +173,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "",
@@ -138,7 +190,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4001/users/",
+					"raw": "http://localhost:4001/users/l8jLwEFc8ThKsgNYjGsn2xKnsLZ2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -146,7 +198,7 @@
 					"port": "4001",
 					"path": [
 						"users",
-						""
+						"l8jLwEFc8ThKsgNYjGsn2xKnsLZ2"
 					]
 				}
 			},
