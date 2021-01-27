@@ -8,13 +8,167 @@
 	"item": [
 		{
 			"name": "register/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"accessToken\", jsonData.auth.access_token);\r",
+							"pm.environment.set(\"refreshToken\", jsonData.auth.refresh_token);\r",
+							"pm.environment.set(\"localId\", jsonData.user.localId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"manolitodiceadios37@gmail.com\",\r\n    \"password\":\"Pass!23457!\",\r\n    \"forename\":\"Hola Manolito\",\r\n    \"surename\":\"Comoesta Usted\",\r\n    \"phoneNumber\":\"32980087\",\r\n    \"country\":\"HN\",\r\n    \"language\":\"spa\",\r\n    \"age\":51,\r\n    \"instagram\":\"@carlosrv51\",\r\n    \"tcVersion\":\"1.0\",\r\n    \"ppVersion\":\"1.0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{external_ip_user_api}}/signup",
+					"host": [
+						"{{external_ip_user_api}}"
+					],
+					"path": [
+						"signup"
+					]
+				},
+				"description": "Katch User Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "login/sign-in",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"accessToken\", jsonData.auth.access_token);\r",
+							"pm.environment.set(\"refreshToken\", jsonData.auth.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"manolitodiceadios37@gmail.com\",\r\n    \"password\":\"Pass!23457!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{external_ip_user_api}}/signin",
+					"host": [
+						"{{external_ip_user_api}}"
+					],
+					"path": [
+						"signin"
+					]
+				},
+				"description": "Login Sign"
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"accessToken\", jsonData.auth.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{refreshToken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{external_ip_user_api}}/refresh",
+					"host": [
+						"{{external_ip_user_api}}"
+					],
+					"path": [
+						"refresh"
+					]
+				},
+				"description": "Get a new access token using refresh token"
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{external_ip_user_api}}/users/{{localId}}",
+					"host": [
+						"{{external_ip_user_api}}"
+					],
+					"path": [
+						"users",
+						"{{localId}}"
+					]
 				},
-				"description": "Katch User Registration"
+				"description": "Request User Info, Authorization test API"
 			},
 			"response": []
 		}
