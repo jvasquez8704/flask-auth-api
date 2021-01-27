@@ -58,8 +58,8 @@ class SignUp(Resource):
             "welcomeSeen": 0,
             "featuresSeen": 0,
             "role": os.getenv('DEFAULT_USER_ROLE'),
-            "TCVersion": data['tcVersion'],
-            "PPVersion": data['ppVersion']
+            "tcVersion": data['tcVersion'],
+            "ppVersion": data['ppVersion']
         }
 
         try:
@@ -70,6 +70,26 @@ class SignUp(Resource):
 
         user_merged = fb_user.copy()
         user_merged.update(firebaseUser)
+
+        try:
+                    #Create document collection related to user
+            ref = fs.collection('users').document(fb_user['localId'])
+            user_record = {
+                    u'Age': data['age'],
+                    u'rated_count': 0,
+                    u'Email': data['email'],
+                    u'Name': data['forename']+" "+data['surename'],
+                    u'lastname': data['surename'],
+                    u'firstname': data['forename'],
+                    u'uid': fb_user['localId'],
+                    u'injected_movies': {},
+                    u'rated_movies': u''  # add empty rated movies
+                }
+            ref.set(user_record)
+        except Exception as e:
+            print('Exception at update user process {0}'.format(e))
+            return {'status_code': 409, "message": "User created, however, check its configuration", "user": fb_user}, 409
+
 
         jw_tokens = {
             'access_token': create_access_token(identity=data['email']),

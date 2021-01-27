@@ -1,6 +1,5 @@
 import firebase_admin
-from firebase_admin import credentials, db, auth
-from dotenv import load_dotenv
+from firebase_admin import credentials, db, auth, firestore
 
 import os
 import json
@@ -13,11 +12,13 @@ SCHEME = 'Users'
 
 #Setup
 #Initialize the app with a service account, granting admin privileges
-cred = credentials.Certificate(os.getenv('CREDENTIALS_FIREBASE_SDK_PATH'))
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('CREDENTIALS_FIREBASE_SDK_PATH')
+cred = credentials.Certificate(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 firebase_admin.initialize_app(cred, {
     'databaseURL': os.getenv('KATCH_FIREBASE_DB_URL')
 })
 
+fs = firestore.Client()
 
 def get_user(userId):
     return db.reference(SCHEME).child(userId).get()

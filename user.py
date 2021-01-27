@@ -64,8 +64,8 @@ class Users(Resource):
             "welcomeSeen":0,
             "featuresSeen":0,
             "role": os.getenv('DEFAULT_USER_ROLE'),
-            "TCVersion":data['tcVersion'],
-            "PPVersion":data['ppVersion']
+            "tcVersion":data['tcVersion'],
+            "ppVersion":data['ppVersion']
         }
 
         try:
