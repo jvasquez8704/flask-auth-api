@@ -18,4 +18,4 @@ spec:
         image: us.gcr.io/katchplus/katch-user-api:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 4001
+        - containerPort: 443

@@ -23,9 +23,9 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = os.getenv('APP_SECRET_KEY')
 # Security Setup
 app.config['JWT_SECRET_KEY'] = os.getenv('APP_JWT_SECRET_SEED')
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=120)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=3600)
 jwt = JWTManager(app)
-# Session config
+# Session config for future implementation (not work right now)
 app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 api = Api(app)
@@ -41,5 +41,5 @@ api.add_resource(SignIn, '/signin')
 api.add_resource(Jwt, '/refresh')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4001, debug=True)
+    app.run(host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
      

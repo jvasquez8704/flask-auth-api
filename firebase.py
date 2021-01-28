@@ -12,7 +12,7 @@ SCHEME = 'Users'
 
 #Setup
 #Initialize the app with a service account, granting admin privileges
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('CREDENTIALS_FIREBASE_SDK_PATH')
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "./watch-party-test-71b4e-firebase-adminsdk-v6fvs-b777d163cd.json"
 cred = credentials.Certificate(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 firebase_admin.initialize_app(cred, {
     'databaseURL': os.getenv('KATCH_FIREBASE_DB_URL')
