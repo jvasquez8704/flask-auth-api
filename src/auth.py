@@ -32,7 +32,7 @@ class SignUp(Resource):
         #step2
         utelly_record = json.loads(json.dumps(get_utelly_id(fb_user['refreshToken'])))
         if 'sub_code' in utelly_record:
-            #Delete userd created at the previous step
+            #Delete userd created at the previous step => rollback_auth_user_record(fb_user['localId'])
             return {'status_code': utelly_record['status_code'], 'custom_code': utelly_record['sub_code'], 'message': ''}, utelly_record['status_code']
 
         #step3
