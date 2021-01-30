@@ -5,6 +5,7 @@ from flask_jwt_extended import (
 from firebase import get_user, get_users, update_user, get_utelly_id
 import time
 import os
+from security import viewer_required
 
 class User(Resource):
     @jwt_required
@@ -75,3 +76,8 @@ class Users(Resource):
             return {'status_code': 409, "message": "User updating process failed."}, 409
         
         return {'status_code': 200, "message": "User updated successfully.", "user": firebase_user}, 200
+
+    @viewer_required
+    def post(self):
+        data = Users.parser.parse_args()        
+        return {'resouce': data} , 200

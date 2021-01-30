@@ -6,6 +6,7 @@ from firebase import sign_in_with_email_and_password, sign_up_with_email_and_pas
 import json
 import time
 import os
+from privilege import privileges
 
 
 class SignUp(Resource):
@@ -90,12 +91,14 @@ class SignUp(Resource):
             print('Exception at update user process {0}'.format(e))
             return {'status_code': 409, "message": "User created, however, check its configuration", "user": fb_user}, 409
 
-
-        jw_tokens = {
-            'access_token': create_access_token(identity=data['email']),
-            'refresh_token': create_refresh_token(identity=data['email'])
+        #findUserRol 
+        payload = {'user': fb_user['localId']}
+        jwt_payload = {
+            'access_token': create_access_token(identity=payload),
+            'refresh_token': create_refresh_token(identity=payload),
+            'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
         }
-        return {'status_code': 201, "message": "User created successfully.", "user": user_merged, "auth": jw_tokens}, 201
+        return {'status_code': 201, "message": "User created successfully.", "user": user_merged, "auth": jwt_payload}, 201
 
         
 
@@ -108,13 +111,15 @@ class SignIn(Resource):
         data = SignIn.parser.parse_args()
         fb_user = json.loads(json.dumps(sign_in_with_email_and_password(data['email'], data['password'])))
         if 'error' in fb_user:
-            return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': ''}, fb_user['error']['code']
-        
-        jw_tokens = {
-            'access_token': create_access_token(identity=data['email']),
-            'refresh_token': create_refresh_token(identity=data['email'])
+            return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': fb_user['error']['message']}, fb_user['error']['code']
+        #findUserRol 
+        payload = {'user': fb_user['localId']}
+        jwt_payload = {
+            'access_token': create_access_token(identity=payload),
+            'refresh_token': create_refresh_token(identity=payload),
+            'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
         }
-        return {'status_code': 200, "message": "User signed successfully.", "user": fb_user, "auth": jw_tokens}, 200
+        return {'status_code': 200, "message": "User signed successfully.", "user": fb_user, "auth": jwt_payload}, 200
 
 
 class Jwt(Resource):
