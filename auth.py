@@ -61,12 +61,12 @@ class SignUp(Resource):
             "tcVersion": data['tcVersion'],
             "ppVersion": data['ppVersion']
         }
-
-        try:
-            update_user(fb_user['localId'], firebaseUser)
-        except Exception as e:
-            print('Exception at update user process {0}'.format(e))
-            return {'status_code': 409, "message": "User created, however, check its configuration", "user": fb_user}, 409
+        update_user(fb_user['localId'], firebaseUser)
+        #try:
+           
+       # except Exception as e:
+       #     print('Exception at update user process {0}'.format(e))
+     #       return {'status_code': 409, "message": "User created, however, check its configuration", "user": fb_user}, 409
 
         user_merged = fb_user.copy()
         user_merged.update(firebaseUser)

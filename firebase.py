@@ -12,7 +12,7 @@ SCHEME = 'Users'
 
 #Setup
 #Initialize the app with a service account, granting admin privileges
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "./watch-party-test-71b4e-firebase-adminsdk-v6fvs-b777d163cd.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "./watchpartysite-4adf0-ce31a2eeacda.json"
 cred = credentials.Certificate(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 firebase_admin.initialize_app(cred, {
     'databaseURL': os.getenv('KATCH_FIREBASE_DB_URL')
@@ -57,7 +57,7 @@ def update_user(userID, user):
     return db.reference(SCHEME).child(userID).update(user)
 
 def get_utelly_id(firebaseRefreshToken):
-    utelly_url = os.getenv('KATCH_UTELLY_PROXY_URL')
+    utelly_url = os.getenv('KATCH_UTELLY_URL')
     X_AppKey = os.getenv('HEADER_X_APP_KEY')
 
     payload = json.dumps({
