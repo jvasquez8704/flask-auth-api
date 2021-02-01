@@ -108,7 +108,7 @@ class SignIn(Resource):
         data = SignIn.parser.parse_args()
         fb_user = json.loads(json.dumps(sign_in_with_email_and_password(data['email'], data['password'])))
         if 'error' in fb_user:
-            return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': ''}, fb_user['error']['code']
+            return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': fb_user['error']['message']}, fb_user['error']['code']
         
         jw_tokens = {
             'access_token': create_access_token(identity=data['email']),
