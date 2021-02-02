@@ -17,7 +17,7 @@ class SignUp(Resource):
     parser.add_argument('phoneNumber', type=str, required=True, help="surname cannot be blank.")
     parser.add_argument('country', type=str, required=True, help="country cannot be blank.")
     parser.add_argument('language', type=str, required=True, help="language cannot be blank.")
-    parser.add_argument('age', type=int, required=True, help="age cannot be blank.")
+    parser.add_argument('age', type=str, required=True, help="age cannot be blank.")
     parser.add_argument('instagram', type=str, required=True, help="instagram cannot be blank.")
     parser.add_argument('tcVersion', type=str, required=False)
     parser.add_argument('ppVersion', type=str, required=False)

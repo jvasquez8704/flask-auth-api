@@ -64,3 +64,12 @@ kubectl create secret tls wildcard-katchplus-certificate --cert ./fullchain.pem 
 
 //Comando PATCH para recontruir los pods
 kubectl patch deployment katch-user-api [-n dev] -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"19012021\"}}}}}"
+
+
+
+
+
+
+
+
+

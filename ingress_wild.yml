@@ -5,20 +5,29 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-  name: api-katchplus
+  namespace: dev
+  name: api-katchplus-dev
 spec:
   rules:
-  - host: test.katchplus.com
+  - host: api-dev.katchplus.com
     http:
       paths:
       - backend:
-          serviceName: utelly-proxy-service
-          servicePort: 443
-        path: /external(/|$)(.*)
-      - backend:
           serviceName: katch-user-api-service
           servicePort: 443
-        path: /user(/|$)(.*)
+        path: /users(/|$)(.*)
+      - backend:
+          serviceName: movies-service
+          servicePort: 443
+        path: /movies(/|$)(.*)
+      - backend:
+          serviceName: utelly-proxy-service
+          servicePort: 443
+        path: /()(.*)
+      - backend:
+          serviceName: katchparty-api-service
+          servicePort: 443
+        path: /v1(/|$)(.*)
   tls:
   - hosts:
     - '*.katchplus.com'
