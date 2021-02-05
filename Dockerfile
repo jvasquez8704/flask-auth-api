@@ -9,5 +9,7 @@ COPY . /api
 
 RUN pip --no-cache-dir install -r requirements.txt
 
-CMD ["python", "app.py"]
+WORKDIR /api/src
+EXPOSE 8080
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
 

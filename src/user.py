@@ -4,7 +4,7 @@ from flask_jwt_extended import (
 )
 from firebase import get_user, get_users, update_user, get_utelly_id
 import time
-import os
+from constants import Props
 from security import viewer_required
 
 class User(Resource):
@@ -28,7 +28,7 @@ class Users(Resource):
     parser.add_argument('phoneNumber', type=str)
     parser.add_argument('country', type=str)
     parser.add_argument('language', type=str)
-    parser.add_argument('age', type=int)
+    parser.add_argument('age', type=bool)
     parser.add_argument('instagram', type=str)
     parser.add_argument('tcVersion', type=str)
     parser.add_argument('ppVersion', type=str)
@@ -57,14 +57,14 @@ class Users(Resource):
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],
-            "age": data['age'],
+            "age": bool(data['age']),
             "instagram": data['instagram'],
             "active": 1,
             "userCreation": int(round(time.time() * 1000)),
             "lastAction": int(round(time.time() * 1000)),
             "welcomeSeen":0,
             "featuresSeen":0,
-            "role": os.getenv('DEFAULT_USER_ROLE'),
+            "role": Props.DEFAULT_USER_ROLE,
             "tcVersion":data['tcVersion'],
             "ppVersion":data['ppVersion']
         }

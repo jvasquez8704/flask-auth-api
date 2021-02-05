@@ -4,8 +4,8 @@ from flask_jwt_extended import (
 )
 from firebase import get_user
 from privilege import privileges
-from config import App
-jwt = App.jwt
+from app_septup import Application
+jwt = Application.jwt
 
 # this method verifies the JWT is present in
 # the request, as well as insuring that this user has a role of

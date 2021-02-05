@@ -1,14 +1,14 @@
 from flask_restful import Api
 from dotenv import load_dotenv
 
-from config import App
+from app_septup import Application
 from user import Users, User
 from auth import SignUp, SignIn, Jwt
 
 
 load_dotenv()
 
-app = App.app
+app = Application.app
 api = Api(app)
 
 @app.before_first_request

@@ -2,10 +2,10 @@ from flask_restful import Resource, reqparse
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
 )
-from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user, fs
+from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user, fs, rollback_auth_user
 import json
 import time
-import os
+from constants import Props
 from privilege import privileges
 
 
@@ -18,7 +18,7 @@ class SignUp(Resource):
     parser.add_argument('phoneNumber', type=str, required=True, help="surname cannot be blank.")
     parser.add_argument('country', type=str, required=True, help="country cannot be blank.")
     parser.add_argument('language', type=str, required=True, help="language cannot be blank.")
-    parser.add_argument('age', type=int, required=True, help="age cannot be blank.")
+    parser.add_argument('age', type=bool, required=True, help="age cannot be blank.")
     parser.add_argument('instagram', type=str, required=True, help="instagram cannot be blank.")
     parser.add_argument('tcVersion', type=str, required=False)
     parser.add_argument('ppVersion', type=str, required=False)
@@ -34,6 +34,7 @@ class SignUp(Resource):
         utelly_record = json.loads(json.dumps(get_utelly_id(fb_user['refreshToken'])))
         if 'sub_code' in utelly_record:
             #Delete userd created at the previous step => rollback_auth_user_record(fb_user['localId'])
+            rollback_auth_user(fb_user['localId'])
             return {'status_code': utelly_record['status_code'], 'custom_code': utelly_record['sub_code'], 'message': ''}, utelly_record['status_code']
 
         #step3
@@ -51,14 +52,14 @@ class SignUp(Resource):
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],
-            "age": data['age'],
+            "age": bool(data['age']),
             "instagram": data['instagram'],
             "active": 1,
             "userCreation": int(round(time.time() * 1000)),
             "lastAction": int(round(time.time() * 1000)),
             "welcomeSeen": 0,
             "featuresSeen": 0,
-            "role": os.getenv('DEFAULT_USER_ROLE'),
+            "role": Props.DEFAULT_USER_ROLE,
             "tcVersion": data['tcVersion'],
             "ppVersion": data['ppVersion']
         }
@@ -76,7 +77,7 @@ class SignUp(Resource):
                     #Create document collection related to user
             ref = fs.collection('users').document(fb_user['localId'])
             user_record = {
-                    u'Age': data['age'],
+                    u'Age': bool(data['age']),
                     u'rated_count': 0,
                     u'Email': data['email'],
                     u'Name': data['forename']+" "+data['surename'],
