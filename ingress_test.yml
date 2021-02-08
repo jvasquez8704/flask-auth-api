@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  namespace: jimmy
+  name: api-katchplus-test
+spec:
+  rules:
+  - host: test.katchplus.com
+    http:
+      paths:
+      - backend:
+          serviceName: utelly-proxy-service
+          servicePort: 443
+        path: /()(.*)
+      - backend:
+          serviceName: myapi
+          servicePort: 5000
+        path: /myapi(/|$)(.*)
+      - backend:
+          serviceName: katch-user-api-service
+          servicePort: 443
+        path: /users(/|$)(.*)
+  tls:
+  - hosts:
+    - '*.katchplus.com'
+  - secretName: wildcard-katchplus-certificate

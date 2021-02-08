@@ -1,21 +1,34 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: katch-user-api
+  name: katch-user-test
   namespace: dev
 spec:
   selector:
     matchLabels:
-      app: katch-user-api
-  replicas: 1
+      app: katch-user-test
+  replicas: 2
   template:
     metadata:
       labels:
-        app: katch-user-api
+        app: katch-user-test
     spec:
       containers:
-      - name: katch-user-api
-        image: us.gcr.io/katchplus/katch-user-api:latest
+      - name: katch-user-test
+        image: us.gcr.io/katchplus/katch-user-test:test
         imagePullPolicy: Always
         ports:
         - containerPort: 443
+        env:
+          - name: KATCH_FIREBASE_SIGNIN_URL
+            value: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword
+          - name: KATCH_FIREBASE_SIGNUP_URL
+            value: https://identitytoolkit.googleapis.com/v1/accounts:signUp
+          - name: CREDENTIALS_FIREBASE_SDK_PATH
+            value: watch-party-test-71b4e-firebase-adminsdk-v6fvs-b777d163cd.json
+          - name: KATCH_FIREBASE_DB_URL
+            value: https://watch-party-test-71b4e.firebaseio.com/
+          - name: FIREBASE_WEB_API_KEY
+            value: AIzaSyBJM-U6ZGMF2iItNbXbDrds043_LM4htd0
+          - name: KATCH_UTELLY_PROXY_URL
+            value: https://10.63.241.73:443/user
