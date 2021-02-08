@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/proxy-ssl-ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA'
+    nginx.ingress.kubernetes.io/proxy-ssl-protocols: 'TLSv1 TLSv1.1 TLSv1.2 TLSv1.3'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "180"
+  namespace: prod
+  name: api-katchplus-prod
+spec:
+  rules:
+  - host: api.katchplus.com
+    http:
+      paths:
+      - backend:
+          serviceName: katch-user-api-service
+          servicePort: 443
+        path: /users(/|$)(.*)
+      - backend:
+          serviceName: movies-service
+          servicePort: 443
+        path: /movies(/|$)(.*)
+      - backend:
+          serviceName: utelly-proxy
+          servicePort: 443
+        path: /()(.*)
+      - backend:
+          serviceName: utelly-proxy
+          servicePort: 443
+        path: /utelly(/|$)(.*)
+      - backend:
+          serviceName: katchparty-api-service
+          servicePort: 443
+        path: /v1(/|$)(.*)
+  tls:
+  - hosts:
+    - '*.katchplus.com'
+  - secretName: wildcard-katchplus-certificate
