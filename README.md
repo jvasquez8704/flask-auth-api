@@ -3,6 +3,12 @@
 # Enviroment
     * Python: 3.8.4 || 2.7.16
 
+# Set GOOGLE CREDENTIALS
+    * Set System enviroment variable Called GOOGLE_APPLICATION_CREDENTIALS = <dev_firebase_credentials_path>
+  
+    OR
+
+    *  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '<dev_firebase_credentials>.json'
 
 ## Its you are using Windows
 # Dependencies

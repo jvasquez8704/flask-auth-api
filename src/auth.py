@@ -3,6 +3,7 @@ from flask_jwt_extended import (
     create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity
 )
 from firebase import sign_in_with_email_and_password, sign_up_with_email_and_password, get_utelly_id, update_user, fs, rollback_auth_user
+
 import json
 import time
 from constants import Props
@@ -73,8 +74,9 @@ class SignUp(Resource):
         user_merged = fb_user.copy()
         user_merged.update(firebaseUser)
 
+        #step4 create a document collection linked to user
         try:
-                    #Create document collection related to user
+            
             ref = fs.collection('users').document(fb_user['localId'])
             user_record = {
                     u'Age': bool(data['age']),
