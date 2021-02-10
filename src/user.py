@@ -24,7 +24,7 @@ class Users(Resource):
     parser.add_argument('email', type=str)
     parser.add_argument('password', type=str)
     parser.add_argument('forename', type=str)
-    parser.add_argument('surename', type=str)
+    parser.add_argument('surname', type=str)
     parser.add_argument('phoneNumber', type=str)
     parser.add_argument('country', type=str)
     parser.add_argument('language', type=str)
@@ -53,7 +53,7 @@ class Users(Resource):
             "GAID": "",
             "email": data['email'],
             "forename": data['forename'],
-            "surename": data['surename'],
+            "surname": data['surname'],
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],

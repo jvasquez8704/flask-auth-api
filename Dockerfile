@@ -10,6 +10,7 @@ COPY . /api
 RUN pip --no-cache-dir install -r requirements.txt
 
 WORKDIR /api/src
-EXPOSE 8080
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+EXPOSE 443
+# CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:443", "--timeout", "180", "--certfile", "./certs/cert1.pem", "--keyfile", "./certs/privkey1.pem", "app:app" ]
 

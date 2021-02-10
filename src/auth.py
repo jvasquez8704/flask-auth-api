@@ -14,7 +14,7 @@ class SignUp(Resource):
     parser.add_argument('email', type=str, required=True, help="email cannot be blank.")
     parser.add_argument('password', type=str, required=True, help="password cannot be blank.")
     parser.add_argument('forename', type=str, required=True, help="forename cannot be blank.")
-    parser.add_argument('surename', type=str, required=True, help="surname cannot be blank.")
+    parser.add_argument('surname', type=str, required=True, help="surname cannot be blank.")
     parser.add_argument('phoneNumber', type=str, required=True, help="surname cannot be blank.")
     parser.add_argument('country', type=str, required=True, help="country cannot be blank.")
     parser.add_argument('language', type=str, required=True, help="language cannot be blank.")
@@ -48,7 +48,7 @@ class SignUp(Resource):
             "GAID": "",
             "email": data['email'],
             "forename": data['forename'],
-            "surename": data['surename'],
+            "surname": data['surname'],
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],
@@ -80,8 +80,8 @@ class SignUp(Resource):
                     u'Age': bool(data['age']),
                     u'rated_count': 0,
                     u'Email': data['email'],
-                    u'Name': data['forename']+" "+data['surename'],
-                    u'lastname': data['surename'],
+                    u'Name': data['forename']+" "+data['surname'],
+                    u'lastname': data['surname'],
                     u'firstname': data['forename'],
                     u'uid': fb_user['localId'],
                     u'injected_movies': {},
