@@ -23,11 +23,11 @@ class Users(Resource):
     parser.add_argument('email', type=str)
     parser.add_argument('password', type=str)
     parser.add_argument('forename', type=str)
-    parser.add_argument('surename', type=str)
+    parser.add_argument('surname', type=str)
     parser.add_argument('phoneNumber', type=str)
     parser.add_argument('country', type=str)
     parser.add_argument('language', type=str)
-    parser.add_argument('age', type=int)
+    parser.add_argument('age', type=bool)
     parser.add_argument('instagram', type=str)
     parser.add_argument('tcVersion', type=str)
     parser.add_argument('ppVersion', type=str)
@@ -52,11 +52,11 @@ class Users(Resource):
             "GAID": "",
             "email": data['email'],
             "forename": data['forename'],
-            "surename": data['surename'],
+            "surname": data['surname'],
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],
-            "age": data['age'],
+            "age": bool(data['age']),
             "instagram": data['instagram'],
             "active": 1,
             "userCreation": int(round(time.time() * 1000)),
