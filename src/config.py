@@ -1,5 +1,25 @@
 import os
 from constants import Props
+
+class LOCAL:
+  #[App Secrets]
+  APP_SECRET_KEY='katch-app-504'
+  APP_JWT_SECRET_SEED='s4P3r-s3cr3t_K@tCh-d3V_K3y'
+ 
+  #[Credentials]
+  GOOGLE_APPLICATION_CREDENTIALS = 'katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json'
+  CREDENTIALS_FIREBASE_SDK_PATH = 'katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json'
+  FIREBASE_WEB_API_KEY='AIzaSyBJM-U6ZGMF2iItNbXbDrds043_LM4htd0'
+
+  #[Firebase]
+  KATCH_FIREBASE_DB_URL='https://katch-nrg-6b8c7-default-rtdb.firebaseio.com/'
+  KATCH_FIREBASE_SIGNIN_URL='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
+  KATCH_FIREBASE_SIGNUP_URL='https://identitytoolkit.googleapis.com/v1/accounts:signUp'
+
+  #[Utelly]
+  KATCH_UTELLY_URL = 'https://10.63.241.73:443/user' if os.getenv('CURRENT_ENV') is not None else 'https://dev-api.utelly.com/phoenix/9/user'
+  HEADER_X_APP_KEY='9404481bdc5f765cba251e74a71ce15b'
+  CURRENT_ENV = os.getenv('CURRENT_ENV', Props.DEV_MODE)
 class DEV:
   #[App Secrets]
   APP_SECRET_KEY='katch-app-504'
@@ -39,7 +59,7 @@ class PRD:
   HEADER_X_APP_KEY='9404481bdc5f765cba251e74a71ce15b'
   CURRENT_ENV = Props.PRD_MODE
 class Configuration:
-  Env = DEV if (os.getenv('CURRENT_ENV') is None or os.getenv('CURRENT_ENV') != 'production') else PRD
+  Env = LOCAL
 
   #[App Secrets]
   APP_SECRET_KEY = Env.APP_SECRET_KEY

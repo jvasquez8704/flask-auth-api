@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from app_septup import Application
 from user import Users, User
 from auth import SignUp, SignIn, Jwt
+from batch import BatchUser, Batch
 
 
 load_dotenv()
@@ -20,6 +21,8 @@ api.add_resource(SignIn, '/signin')
 api.add_resource(Jwt, '/refresh')
 api.add_resource(User, '/users/<string:userId>')
 api.add_resource(Users, '/users')
+api.add_resource(Batch, '/batch')
+api.add_resource(BatchUser, '/batch-user/<string:userId>')
 
 
 if __name__ == '__main__':

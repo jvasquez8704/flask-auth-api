@@ -3,6 +3,7 @@ from firebase_admin import credentials, db, auth, firestore
 
 import json
 import requests
+import uuid
 from config import Configuration 
 from constants import Props
 
@@ -55,6 +56,22 @@ def sign_up_with_email_and_password(email, password):
 
 def rollback_auth_user(userID):
     return auth.delete_user(userID)
+
+def create_user(id,user):
+    str_uuid = str(uuid.uuid4())
+    print('User id {0}'.format(id))
+    users_ref = db.reference(SCHEME)
+    users_ref.child(id).set(user)
+    # users_ref.push(user)
+    
+def create_fs_user(id,user_record):
+    try:
+        ref = fs.collection('users').document(id)
+        ref.set(user_record)
+    except Exception as e:
+        print('Exception at update user process {0}'.format(e))
+        return {'status_code': 409, "message": "User created, however, check its configuration", "user": user_record}, 409
+    
 
 def update_user(userID, user):
     return db.reference(SCHEME).child(userID).update(user)
