@@ -57,7 +57,7 @@ def update_user(userID, user):
     return db.reference(SCHEME).child(userID).update(user)
 
 def get_utelly_id(firebaseRefreshToken):
-    utelly_url = 'https://10.63.242.42:443/user'#os.getenv('KATCH_UTELLY_PROXY_URL')
+    utelly_url = 'https://utelly-proxy:443/user'#os.getenv('KATCH_UTELLY_PROXY_URL')
     X_AppKey = '9404481bdc5f765cba251e74a71ce15b'#os.getenv('HEADER_X_APP_KEY')
 
     payload = json.dumps({
