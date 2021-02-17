@@ -34,9 +34,17 @@ spec:
           servicePort: 443
         path: /utelly(/|$)(.*)
       - backend:
+          serviceName: utelly-proxy-alt
+          servicePort: 443
+        path: /utellyalt(/|$)(.*)
+      - backend:
           serviceName: katchparty-api-service
           servicePort: 443
         path: /v1(/|$)(.*)
+      - backend:
+          serviceName: nrg-api-service
+          servicePort: 443
+        path: /nrgsurvey(/|$)(.*)        
   tls:
   - hosts:
     - '*.katchplus.com'
