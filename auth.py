@@ -82,6 +82,7 @@ class SignUp(Resource):
                     u'lastname': data['surname'],
                     u'firstname': data['forename'],
                     u'uid': fb_user['localId'],
+                    u"external_ids": {"utelly": utelly_record['user']['id'] },
                     u'injected_movies': {},
                     u'rated_movies': u''  # add empty rated movies
                 }
@@ -97,7 +98,7 @@ class SignUp(Resource):
         }
         return {'status_code': 201, "message": "User created successfully.", "user": user_merged, "auth": jw_tokens}, 201
 
-        
+
 
 class SignIn(Resource):
     parser = reqparse.RequestParser()
