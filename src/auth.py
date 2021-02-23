@@ -84,6 +84,7 @@ class SignUp(Resource):
                     u'lastname': data['surename'],
                     u'firstname': data['forename'],
                     u'uid': fb_user['localId'],
+                    u"external_ids": {"utelly": utelly_record['user']['id'] },
                     u'injected_movies': {},
                     u'rated_movies': u''  # add empty rated movies
                 }
