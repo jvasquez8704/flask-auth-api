@@ -1,0 +1,18 @@
+{
+    "data":{},
+    "status":{
+        "code":"",
+        "message": ""
+    },
+    "movies":{
+        "id":"",
+        "info":{
+            "es":{},
+            "en":{},
+            "fr":{}
+
+        }        
+        
+    }
+}
+
