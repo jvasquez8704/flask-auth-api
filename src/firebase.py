@@ -14,10 +14,10 @@ SCHEME = Props.USER_SCHEME
 
 #Setup
 #Initialize the app with a service account, granting admin privileges
-cred = credentials.Certificate(Configuration.GOOGLE_APPLICATION_CREDENTIALS)
-#cred = credentials.Certificate('katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json')
+#cred = credentials.Certificate(Configuration.GOOGLE_APPLICATION_CREDENTIALS)
+cred = credentials.Certificate('katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json')
 firebase_admin.initialize_app(cred, {
-    'databaseURL': Configuration.KATCH_FIREBASE_DB_URL
+    'databaseURL': 'https://katch-nrg-6b8c7-default-rtdb.firebaseio.com/'#Configuration.KATCH_FIREBASE_DB_URL
 })
 
 fs = firestore.Client()
