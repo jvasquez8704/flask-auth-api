@@ -14,11 +14,9 @@ SCHEME = Props.USER_SCHEME
 
 #Setup
 #Initialize the app with a service account, granting admin privileges
-#cred = credentials.Certificate(Configuration.GOOGLE_APPLICATION_CREDENTIALS)
-cred = credentials.Certificate('katch-nrg-nonprod-firebase-adminsdk-tzkzy-7407e7c3e5.json')
-#cred = credentials.Certificate('katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json')
+cred = credentials.Certificate(Configuration.GOOGLE_APPLICATION_CREDENTIALS)
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://katch-nrg-nonprod.firebaseio.com/'#'https://katch-nrg-6b8c7-default-rtdb.firebaseio.com/'#Configuration.KATCH_FIREBASE_DB_URL
+    'databaseURL': Configuration.KATCH_FIREBASE_DB_URL
 })
 
 fs = firestore.Client()
@@ -69,7 +67,6 @@ def create_user(id,user):
 def create_fs_user(id,user_record):
     try:
         ref = fs.collection('users').document(id)
-        print('Hereee')
         ref.set(user_record)
     except Exception as e:
         print('Exception at update user process {0}'.format(e))
@@ -77,7 +74,10 @@ def create_fs_user(id,user_record):
     
 
 def update_user(userID, user):
-    return db.reference(SCHEME).child(userID).update(user)
+    user_found = get_user(userID)
+    if user_found:        
+        return db.reference(SCHEME).child(userID).update(user)
+    raise NameError(Props.ERR_USER_NOT_FOUND)
 
 def get_utelly_id(firebaseRefreshToken):
     utelly_url = Configuration.KATCH_UTELLY_URL

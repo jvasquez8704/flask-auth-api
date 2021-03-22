@@ -49,39 +49,20 @@ class Users(Resource):
     def put(self):
         data = Users.parser.parse_args()
         firebase_user = {
-            "katchID": "",
-            "UDID": "", 
-            "IMEI": "",
-            "IDFA": "",
-            "AAID": "",
-            "GAID": "",
-            "email": data['email'],
-            "forename": data['forename'],
-            "surname": data['surname'],
-            "phoneNumber": data['phoneNumber'],
-            "country": data['country'],
-            "language": data['language'],
             "age": data['age'],
             "gender": data['gender'],
             "enthnic": data['enthnic'],
             "aware": data['aware'],
             "interest": data['interest'],
-            "fan": data['fan'],
-            "instagram": data['instagram'],
-            "active": 1,
-            "userCreation": int(round(time.time() * 1000)),
-            "lastAction": int(round(time.time() * 1000)),
-            "welcomeSeen":0,
-            "featuresSeen":0,
-            "role": Props.DEFAULT_USER_ROLE,
-            "tcVersion":data['tcVersion'],
-            "ppVersion":data['ppVersion']
+            "fan": data['fan']
         }
 
         try:
             update_user(data['localId'], firebase_user)
         except Exception as e:
             print('Exception at update user process {0}'.format(e))
+            if str(e) == Props.ERR_USER_NOT_FOUND:
+                return {'status_code': 404, "message": "User not found."}, 404
             return {'status_code': 409, "message": "User updating process failed."}, 409
         
         return {'status_code': 200, "message": "User updated successfully.", "user": firebase_user}, 200

@@ -26,12 +26,12 @@ class DEV:
   APP_JWT_SECRET_SEED='s4P3r-s3cr3t_K@tCh-d3V_K3y'
  
   #[Credentials]
-  GOOGLE_APPLICATION_CREDENTIALS = '../watch-party-test-71b4e-firebase-adminsdk-v6fvs-b777d163cd.json'
-  CREDENTIALS_FIREBASE_SDK_PATH = '../watch-party-test-71b4e-firebase-adminsdk-v6fvs-b777d163cd.json'
+  GOOGLE_APPLICATION_CREDENTIALS = 'katch-nrg-nonprod-firebase-adminsdk-tzkzy-7407e7c3e5.json'
+  CREDENTIALS_FIREBASE_SDK_PATH = 'katch-nrg-nonprod-firebase-adminsdk-tzkzy-7407e7c3e5.json'
   FIREBASE_WEB_API_KEY='AIzaSyBJM-U6ZGMF2iItNbXbDrds043_LM4htd0'
 
   #[Firebase]
-  KATCH_FIREBASE_DB_URL='https://watch-party-test-71b4e.firebaseio.com/'
+  KATCH_FIREBASE_DB_URL='https://katch-nrg-nonprod.firebaseio.com/'
   KATCH_FIREBASE_SIGNIN_URL='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
   KATCH_FIREBASE_SIGNUP_URL='https://identitytoolkit.googleapis.com/v1/accounts:signUp'
 
