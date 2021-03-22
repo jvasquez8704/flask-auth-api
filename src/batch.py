@@ -16,7 +16,7 @@ class Batch(Resource):
     parser.add_argument('language', type=str)
     parser.add_argument('age', type=str)
     parser.add_argument('gender', type=str)
-    parser.add_argument('enthnic', type=str)
+    parser.add_argument('ethnic', type=str)
     parser.add_argument('aware', type=str)
     parser.add_argument('interest', type=str)
     parser.add_argument('fan', type=str)
