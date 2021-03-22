@@ -45,7 +45,7 @@ class Users(Resource):
             return {'users': users} , 200
         return {'status_code': 404, 'custom_code': 'USER_NOT_FOUND', 'message': 'User not found'}, 404
     
-    @jwt_required
+    #@jwt_required
     def put(self):
         data = Users.parser.parse_args()
         firebase_user = {
@@ -62,7 +62,12 @@ class Users(Resource):
             "phoneNumber": data['phoneNumber'],
             "country": data['country'],
             "language": data['language'],
-            "age": bool(data['age']),
+            "age": data['age'],
+            "gender": data['gender'],
+            "enthnic": data['enthnic'],
+            "aware": data['aware'],
+            "interest": data['interest'],
+            "fan": data['fan'],
             "instagram": data['instagram'],
             "active": 1,
             "userCreation": int(round(time.time() * 1000)),

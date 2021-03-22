@@ -14,15 +14,15 @@ api = Api(app)
 
 @app.before_first_request
 def loading_config():
-    print('Katch user API started!')
+    print('NRG user API started!')
 
-api.add_resource(SignUp, '/signup')
-api.add_resource(SignIn, '/signin')
-api.add_resource(Jwt, '/refresh')
-api.add_resource(User, '/users/<string:userId>')
+#api.add_resource(SignUp, '/signup')
+#api.add_resource(SignIn, '/signin')
+#api.add_resource(Jwt, '/refresh')
+#api.add_resource(User, '/users/<string:userId>')
 api.add_resource(Users, '/users')
-api.add_resource(Batch, '/batch')
-api.add_resource(BatchUser, '/batch-user/<string:userId>')
+#api.add_resource(Batch, '/batch')
+#api.add_resource(BatchUser, '/batch-user/<string:userId>')
 
 
 if __name__ == '__main__':
