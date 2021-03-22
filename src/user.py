@@ -8,9 +8,9 @@ from constants import Props
 from security import viewer_required
 
 class User(Resource):
-    @jwt_required
+    #@jwt_required
     def get(self, userId):
-        logged_user = get_jwt_identity()
+        #logged_user = get_jwt_identity()
         user = get_user(userId)
         if user:
             return {"data": user, "logged_in_as": logged_user}, 200
@@ -28,7 +28,12 @@ class Users(Resource):
     parser.add_argument('phoneNumber', type=str)
     parser.add_argument('country', type=str)
     parser.add_argument('language', type=str)
-    parser.add_argument('age', type=bool)
+    parser.add_argument('age', type=str)
+    parser.add_argument('gender', type=str)
+    parser.add_argument('enthnic', type=str)
+    parser.add_argument('aware', type=str)
+    parser.add_argument('interest', type=str)
+    parser.add_argument('fan', type=str)
     parser.add_argument('instagram', type=str)
     parser.add_argument('tcVersion', type=str)
     parser.add_argument('ppVersion', type=str)

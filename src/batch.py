@@ -14,7 +14,12 @@ class Batch(Resource):
     parser.add_argument('phoneNumber', type=str)
     parser.add_argument('country', type=str)
     parser.add_argument('language', type=str)
-    parser.add_argument('age', type=bool)
+    parser.add_argument('age', type=str)
+    parser.add_argument('gender', type=str)
+    parser.add_argument('enthnic', type=str)
+    parser.add_argument('aware', type=str)
+    parser.add_argument('interest', type=str)
+    parser.add_argument('fan', type=str)
     parser.add_argument('instagram', type=str)
     parser.add_argument('tcVersion', type=str)
     parser.add_argument('ppVersion', type=str)
@@ -28,7 +33,7 @@ class Batch(Resource):
     def post(self):
         data = Batch.parser.parse_args()
 
-        for x in range(9000, 9201):
+        for x in range(9000, 9202):
             email = 'batch-{0}@gmail.com'.format(x)
             insta = '@batch-{0}'.format(x)
             user_id = 'user-ext-nrg-' + format(x,'04')
@@ -47,7 +52,7 @@ class Batch(Resource):
                 "phoneNumber": data['phoneNumber'],
                 "country": data['country'],
                 "language": data['language'],
-                "age": bool(data['age']),
+                "age": data['age'],
                 "instagram": insta,
                 "active": 1,
                 "userCreation": int(round(time.time() * 1000)),
