@@ -1,21 +1,21 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: katch-user-api
+  name: nrg-demographic-api
   namespace: dev
 spec:
   selector:
     matchLabels:
-      app: katch-user-api
+      app: nrg-demographic-api
   replicas: 1
   template:
     metadata:
       labels:
-        app: katch-user-api
+        app: nrg-demographic-api
     spec:
       containers:
-      - name: katch-user-api
-        image: us.gcr.io/katchplus/katch-user-api:latest
+      - name: nrg-demographic-api
+        image: us.gcr.io/katchplus/nrg-demographic-api:dev
         imagePullPolicy: Always
         ports:
         - containerPort: 443
