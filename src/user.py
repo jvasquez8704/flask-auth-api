@@ -13,7 +13,7 @@ class User(Resource):
         #logged_user = get_jwt_identity()
         user = get_user(userId)
         if user:
-            return {"data": user, "logged_in_as": logged_user}, 200
+            return {"data": user}, 200
         return {'status_code': 404, 'custom_code': 'USER_NOT_FOUND', 'message': 'User not found'}, 404
 
 
@@ -71,3 +71,52 @@ class Users(Resource):
     def post(self):
         data = Users.parser.parse_args()        
         return {'resouce': data} , 200
+
+class User_Url(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('localId', type=str, required=True, help="localId cannot be blank.")
+    parser.add_argument('url', type=str, required=True, help="url cannot be blank.")
+
+    def put(self):
+        data = User_Url.parser.parse_args()
+        firebase_user = {
+            "url": data['url']
+        }
+        try:
+            update_user(data['localId'], firebase_user)
+        except Exception as e:
+            print('Exception at update user process {0}'.format(e))
+            if str(e) == Props.ERR_USER_NOT_FOUND:
+                return {'status_code': 404, "message": "User not found."}, 404
+            return {'status_code': 409, "message": "User updating process failed."}, 409
+        
+        return {'status_code': 200, "message": "User updated successfully.", "user": firebase_user}, 200
+
+class User_Rate(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('localId', type=str, required=True, help="localId cannot be blank.")
+    parser.add_argument('sessionInit', type=str)
+    parser.add_argument('rateInit', type=str)
+
+    def put(self):
+        data = User_Rate.parser.parse_args()
+        if data['sessionInit'] == None and data['rateInit'] == None:
+            return {'status_code': 400, "message": "Bad request."}, 400
+
+        firebase_user = {}
+
+        if data['sessionInit']:
+            firebase_user['sessionInit'] = data['sessionInit']
+        
+        if data['rateInit']:
+            firebase_user['rateInit'] = data['rateInit']
+
+        try:
+            update_user(data['localId'], firebase_user)
+        except Exception as e:
+            print('Exception at update user process {0}'.format(e))
+            if str(e) == Props.ERR_USER_NOT_FOUND:
+                return {'status_code': 404, "message": "User not found."}, 404
+            return {'status_code': 409, "message": "User updating process failed."}, 409
+        
+        return {'status_code': 200, "message": "User updated successfully.", "user": firebase_user}, 200
