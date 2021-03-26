@@ -16,12 +16,12 @@ api = Api(app)
 def loading_config():
     print('NRG user API started!')
 
-api.add_resource(User, '/users/<string:userId>', endpoint='user')
+api.add_resource(User, '/user/<string:userId>', endpoint='user')
 api.add_resource(User_Url, '/surveyUrl', endpoint='surveyUrl')
 api.add_resource(User_Rate, '/surveyInit', endpoint='surveyInit')
 api.add_resource(Users, '/users', endpoint='users')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
+    app.run(host='0.0.0.0', port=443)#, debug=True, ssl_context='adhoc')
      
