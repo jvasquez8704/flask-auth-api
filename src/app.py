@@ -16,9 +16,9 @@ api = Api(app)
 def loading_config():
     print('NRG user API started!')
 
-api.add_resource(User, '/user/<string:userId>', endpoint='user')
-api.add_resource(User_Url, '/user/url', endpoint='user_url')
-api.add_resource(User_Rate, '/user/rate', endpoint='user_rate')
+api.add_resource(User, '/users/<string:userId>', endpoint='user')
+api.add_resource(User_Url, '/surveyUrl', endpoint='surveyUrl')
+api.add_resource(User_Rate, '/surveyInit', endpoint='surveyInit')
 api.add_resource(Users, '/users', endpoint='users')
 
 

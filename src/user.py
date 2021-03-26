@@ -12,9 +12,17 @@ class User(Resource):
     def get(self, userId):
         #logged_user = get_jwt_identity()
         user = get_user(userId)
-        if user:
-            return {"data": user}, 200
-        return {'status_code': 404, 'custom_code': 'USER_NOT_FOUND', 'message': 'User not found'}, 404
+        try:
+            sessionExist = "sessionInit" in user
+            rateExist = "rateInit" in user
+            if sessionExist and rateExist:
+                return {"data": {"sessionInit":user['sessionInit'],"rateInit":user['rateInit']} }, 200
+            if sessionExist:
+                return {"data": {"sessionInit":user['sessionInit']}}, 200
+        except:
+            return {'status_code': 404, 'custom_code': 'NOT_SURVEY_STARTED', 'message': 'Not survey started'}, 404
+    
+        return {'status_code': 404, 'custom_code': 'NOT_SURVEY_STARTED', 'message': 'Not survey started'}, 404
 
 
 class Users(Resource):
