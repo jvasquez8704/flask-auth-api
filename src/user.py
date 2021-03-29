@@ -42,6 +42,7 @@ class Users(Resource):
     parser.add_argument('aware', type=str)
     parser.add_argument('interest', type=str)
     parser.add_argument('fan', type=str)
+    parser.add_argument('url', type=str)
     parser.add_argument('instagram', type=str)
     parser.add_argument('tcVersion', type=str)
     parser.add_argument('ppVersion', type=str)
@@ -62,7 +63,9 @@ class Users(Resource):
             "ethnic": data['ethnic'],
             "aware": data['aware'],
             "interest": data['interest'],
-            "fan": data['fan']
+            "fan": data['fan'],
+            "url": data['url'],
+            "language": data['language']
         }
 
         try:

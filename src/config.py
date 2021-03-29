@@ -80,7 +80,7 @@ class PRD:
   CURRENT_ENV = Props.PRD_MODE
 
 class Configuration:
-  Env = LOCAL
+  Env = DEV
 
   #[App Secrets]
   APP_SECRET_KEY = Env.APP_SECRET_KEY
