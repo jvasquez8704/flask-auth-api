@@ -1,4 +1,8 @@
 FROM rackspacedot/python37
+
+ARG ENV=
+ENV ENV=${ENV}
+
 RUN  apt-get update && apt-get install -y --force-yes jq
 
 RUN pip3 install --upgrade pip
