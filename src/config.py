@@ -12,7 +12,7 @@ class LOCAL:
   FIREBASE_WEB_API_KEY='AIzaSyBJM-U6ZGMF2iItNbXbDrds043_LM4htd0'
 
   #[Firebase]
-  KATCH_FIREBASE_DB_URL='https://katch-nrg-6b8c7-default-rtdb.firebaseio.com/'
+  KATCH_FIREBASE_DB_URL='https://katch-nrg-6b8c7.firebaseio.com/'
   KATCH_FIREBASE_SIGNIN_URL='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
   KATCH_FIREBASE_SIGNUP_URL='https://identitytoolkit.googleapis.com/v1/accounts:signUp'
 
