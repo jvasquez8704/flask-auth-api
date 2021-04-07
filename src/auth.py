@@ -97,8 +97,8 @@ class SignUp(Resource):
         payload = {'user': fb_user['localId']}
         jwt_payload = {
             'access_token': create_access_token(identity=payload),
-            'refresh_token': create_refresh_token(identity=payload),
-            'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
+            'refresh_token': create_refresh_token(identity=payload)
+            # 'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
         }
         return {'status_code': 201, "message": "User created successfully.", "user": user_merged, "auth": jwt_payload}, 201
 
@@ -118,8 +118,8 @@ class SignIn(Resource):
         payload = {'user': fb_user['localId']}
         jwt_payload = {
             'access_token': create_access_token(identity=payload),
-            'refresh_token': create_refresh_token(identity=payload),
-            'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
+            'refresh_token': create_refresh_token(identity=payload)
+            # 'privileges': { 'ui': privileges['ui'], 'actions': privileges['actions']}
         }
         return {'status_code': 200, "message": "User signed successfully.", "user": fb_user, "auth": jwt_payload}, 200
 
