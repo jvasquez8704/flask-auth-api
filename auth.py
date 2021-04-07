@@ -30,15 +30,15 @@ class SignUp(Resource):
             return {'status_code': fb_user['error']['code'], 'custom_code': fb_user['error']['message'], 'message': ''}, fb_user['error']['code']
 
         #step2
-        utelly_record = json.loads(json.dumps(get_utelly_id(fb_user['refreshToken'])))
-        if 'sub_code' in utelly_record:
-            #Delete userd created at the previous step
-            return {'status_code': utelly_record['status_code'], 'custom_code': utelly_record['sub_code'], 'message': ''}, utelly_record['status_code']
+        # utelly_record = json.loads(json.dumps(get_utelly_id(fb_user['refreshToken'])))
+        # if 'sub_code' in utelly_record:
+        #     #Delete userd created at the previous step
+        #     return {'status_code': utelly_record['status_code'], 'custom_code': utelly_record['sub_code'], 'message': ''}, utelly_record['status_code']
 
         #step3
         firebaseUser = {
             "katchID": "",
-            "utellyID": utelly_record['user']['id'],
+            # "utellyID": utelly_record['user']['id'],
             "UDID": "",
             "IMEI": "",
             "IDFA": "",
