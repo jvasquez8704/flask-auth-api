@@ -7,8 +7,8 @@ class LOCAL:
   APP_JWT_SECRET_SEED='s4P3r-s3cr3t_K@tCh-d3V_K3y'
  
   #[Credentials]
-  GOOGLE_APPLICATION_CREDENTIALS = 'katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json'
-  CREDENTIALS_FIREBASE_SDK_PATH = 'katch-nrg-6b8c7-firebase-adminsdk-6wqgp-8e7a1e6e93.json'
+  GOOGLE_APPLICATION_CREDENTIALS = './src/db/keys/nrg_pro.json'
+  CREDENTIALS_FIREBASE_SDK_PATH = './src/db/keys/nrg_pro.json'
   FIREBASE_WEB_API_KEY='AIzaSyBJM-U6ZGMF2iItNbXbDrds043_LM4htd0'
 
   #[Firebase]
