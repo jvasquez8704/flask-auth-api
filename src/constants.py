@@ -5,5 +5,6 @@ class Props:
   LOCAL_MODE = 'local'
   PRD_MODE = 'production'
   DEV_MODE = 'development'
+  STG_MODE = 'staging'
   USER_SCHEME = 'Users'
   CURRENT_TIME = int(round(time.time() * 1000))
